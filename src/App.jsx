@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
-  Clock,
   FileText,
   GraduationCap,
   Play,
@@ -13,109 +11,115 @@ import geminiAcademyLogo from "../Assests/gemini-academy.svg";
 import googleForEduLogo from "../Assests/Google_for_Education_logo.svg";
 import websisLogo from "../Assests/websis.png";
 
-const LINKS = [
+const LINK_GROUPS = [
   {
-    id: "student",
-    title: "Pendaftaran & Ujian Mahasiswa",
-    description: "Portal resmi peserta mahasiswa (mahasiswa.kmk.id)",
-    href: "https://mahasiswa.kmk.id",
-    icon: GraduationCap,
-    cardClasses:
-      "border-blue-600/25 hover:border-blue-600 hover:bg-blue-50/60",
-    iconClasses: "bg-blue-600/10 text-blue-600",
-    arrowClasses:
-      "bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white",
+    id: "mahasiswa",
+    label: "Untuk Mahasiswa",
+    badgeClasses: "bg-blue-600/10 text-blue-700",
+    dotClasses: "bg-blue-600",
+    items: [
+      {
+        id: "student-register",
+        title: "Pendaftaran & Ujian Mahasiswa",
+        description: "Portal resmi peserta mahasiswa (mahasiswa.kmk.id)",
+        href: "https://mahasiswa.kmk.id",
+        icon: GraduationCap,
+        cardClasses:
+          "border-blue-600/25 hover:border-blue-600 hover:bg-blue-50/60",
+        iconClasses: "bg-blue-600/10 text-blue-600",
+        arrowClasses:
+          "bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white",
+      },
+      {
+        id: "student-video",
+        title: "Panduan Video Mahasiswa",
+        description: "Playlist tutorial YouTube untuk mahasiswa",
+        href: "https://www.youtube.com/playlist?list=PLCd0MLd1ge1E",
+        icon: Play,
+        cardClasses:
+          "border-red-600/20 hover:border-red-600 hover:bg-red-50/50",
+        iconClasses: "bg-red-600/10 text-red-600",
+        arrowClasses:
+          "bg-slate-100 text-slate-500 group-hover:bg-red-600 group-hover:text-white",
+      },
+      {
+        id: "student-pdf",
+        title: "Panduan PDF Mahasiswa",
+        description: "Dokumen panduan tertulis resmi mahasiswa",
+        href: "https://drive.google.com/file/d/15N7pjEPTvCZhcQJSztFXZ-DNegQC7PLu/view?usp=drive_link",
+        icon: FileText,
+        cardClasses:
+          "border-blue-600/20 hover:border-blue-600 hover:bg-blue-50/40",
+        iconClasses: "bg-blue-600/10 text-blue-700",
+        arrowClasses:
+          "bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white",
+      },
+    ],
   },
   {
-    id: "lecturer",
-    title: "Pendaftaran & Ujian Dosen",
-    description: "Portal resmi peserta dosen (dosen.kmk.id)",
-    href: "https://dosen.kmk.id",
-    icon: Users,
-    cardClasses:
-      "border-emerald-800/25 hover:border-emerald-800 hover:bg-emerald-50/60",
-    iconClasses: "bg-emerald-800/10 text-emerald-800",
-    arrowClasses:
-      "bg-slate-100 text-slate-500 group-hover:bg-emerald-800 group-hover:text-white",
-  },
-  {
-    id: "video",
-    title: "Panduan Video",
-    description: "Playlist tutorial langkah demi langkah di YouTube",
-    href: "https://www.youtube.com/playlist?list=PLCd0MLd1ge1E",
-    icon: Play,
-    cardClasses:
-      "border-red-600/20 hover:border-red-600 hover:bg-red-50/50",
-    iconClasses: "bg-red-600/10 text-red-600",
-    arrowClasses:
-      "bg-slate-100 text-slate-500 group-hover:bg-red-600 group-hover:text-white",
-  },
-  {
-    id: "pdf",
-    title: "Panduan PDF",
-    description: "Dokumen panduan tertulis sedang disiapkan",
-    href: null,
-    badge: "Menyusul",
-    icon: FileText,
+    id: "dosen",
+    label: "Untuk Dosen",
+    badgeClasses: "bg-emerald-800/10 text-[#00572d]",
+    dotClasses: "bg-emerald-700",
+    items: [
+      {
+        id: "lecturer-register",
+        title: "Pendaftaran & Ujian Dosen",
+        description: "Portal resmi peserta dosen (dosen.kmk.id)",
+        href: "https://dosen.kmk.id",
+        icon: Users,
+        cardClasses:
+          "border-emerald-800/25 hover:border-emerald-800 hover:bg-emerald-50/60",
+        iconClasses: "bg-emerald-800/10 text-emerald-800",
+        arrowClasses:
+          "bg-slate-100 text-slate-500 group-hover:bg-emerald-800 group-hover:text-white",
+      },
+      {
+        id: "lecturer-video",
+        title: "Panduan Video Dosen",
+        description: "Playlist tutorial YouTube untuk dosen",
+        href: "https://www.youtube.com/playlist?list=PLJIYpU05DMrc",
+        icon: Play,
+        cardClasses:
+          "border-red-600/20 hover:border-red-600 hover:bg-red-50/50",
+        iconClasses: "bg-red-600/10 text-red-600",
+        arrowClasses:
+          "bg-slate-100 text-slate-500 group-hover:bg-red-600 group-hover:text-white",
+      },
+      {
+        id: "lecturer-pdf",
+        title: "Panduan PDF Dosen",
+        description: "Dokumen panduan tertulis resmi dosen",
+        href: "https://drive.google.com/file/d/1bszqWQz5KxYFEJ30Rp70KjQRhjqt1hcm/view?usp=drive_link",
+        icon: FileText,
+        cardClasses:
+          "border-emerald-800/20 hover:border-emerald-800 hover:bg-emerald-50/40",
+        iconClasses: "bg-emerald-800/10 text-emerald-800",
+        arrowClasses:
+          "bg-slate-100 text-slate-500 group-hover:bg-emerald-800 group-hover:text-white",
+      },
+    ],
   },
 ];
 
-function LinkItem({ item, onComingSoon }) {
+function LinkItem({ item }) {
   const Icon = item.icon;
-
-  if (!item.href) {
-    return (
-      <button
-        type="button"
-        onClick={onComingSoon}
-        aria-disabled="true"
-        className="flex min-h-[68px] w-full cursor-pointer items-center gap-3.5 rounded-2xl border-[1.5px] border-dashed border-slate-400/50 bg-slate-50/90 px-3.5 py-3 text-left transition-colors hover:bg-slate-100 active:scale-[0.985] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-      >
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-500/10 text-slate-500">
-          <Icon className="h-5 w-5" aria-hidden="true" />
-        </span>
-
-        <span className="min-w-0 flex-1">
-          <span className="flex flex-wrap items-center gap-2">
-            <span className="text-[15px] font-bold leading-snug text-slate-700">
-              {item.title}
-            </span>
-            {item.badge && (
-              <span className="inline-flex items-center rounded-full bg-amber-500/15 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-amber-800">
-                {item.badge}
-              </span>
-            )}
-          </span>
-          <span className="mt-0.5 block text-xs font-medium text-slate-500">
-            {item.description}
-          </span>
-        </span>
-
-        <span
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-200/70 text-slate-500"
-          aria-hidden="true"
-        >
-          <Clock className="h-3.5 w-3.5" />
-        </span>
-      </button>
-    );
-  }
 
   return (
     <a
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group flex min-h-[68px] w-full items-center gap-3.5 rounded-2xl border-[1.5px] bg-white px-3.5 py-3 text-left shadow-xs transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.985] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ${item.cardClasses}`}
+      className={`group flex min-h-[64px] w-full items-center gap-3.5 rounded-2xl border-[1.5px] bg-white px-3.5 py-2.5 text-left shadow-xs transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.985] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ${item.cardClasses}`}
     >
       <span
-        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${item.iconClasses}`}
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${item.iconClasses}`}
       >
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
 
       <span className="min-w-0 flex-1">
-        <span className="block text-[15px] font-bold leading-snug text-slate-900">
+        <span className="block text-[14.5px] font-bold leading-snug text-slate-900">
           {item.title}
         </span>
         <span className="mt-0.5 block text-xs font-medium text-slate-500">
@@ -134,14 +138,6 @@ function LinkItem({ item, onComingSoon }) {
 }
 
 export default function App() {
-  const [showToast, setShowToast] = useState(false);
-
-  useEffect(() => {
-    if (!showToast) return;
-    const timer = setTimeout(() => setShowToast(false), 3500);
-    return () => clearTimeout(timer);
-  }, [showToast]);
-
   return (
     <div className="relative min-h-dvh overflow-x-hidden">
       {/* Ambient background glow */}
@@ -200,33 +196,39 @@ export default function App() {
             <p className="mt-1 text-[15px] font-semibold leading-snug text-slate-600">
               UIN Maulana Malik Ibrahim Malang
               <span className="mt-0.5 block text-[13.5px] font-medium text-slate-500">
-                Khusus Dosen &amp; Mahasiswa
+                Portal Resmi Mahasiswa &amp; Dosen
               </span>
             </p>
           </header>
 
-          {/* Main Links */}
-          <nav className="flex flex-col gap-3" aria-label="Daftar Tautan Utama">
-            {LINKS.map((item) => (
-              <LinkItem
-                key={item.id}
-                item={item}
-                onComingSoon={() => setShowToast(true)}
-              />
+          {/* Grouped Main Links */}
+          <nav className="flex flex-col gap-5" aria-label="Daftar Tautan Utama">
+            {LINK_GROUPS.map((group) => (
+              <div key={group.id} className="flex flex-col gap-2.5">
+                <div className="flex items-center gap-2 px-0.5">
+                  <span
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold tracking-wide ${group.badgeClasses}`}
+                  >
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full ${group.dotClasses}`}
+                      aria-hidden="true"
+                    />
+                    {group.label}
+                  </span>
+                  <span
+                    className="h-px flex-1 bg-slate-900/10"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2.5">
+                  {group.items.map((item) => (
+                    <LinkItem key={item.id} item={item} />
+                  ))}
+                </div>
+              </div>
             ))}
           </nav>
-
-          {/* Status Toast for PDF Coming Soon */}
-          {showToast && (
-            <p
-              role="status"
-              aria-live="polite"
-              className="mt-3 rounded-xl bg-slate-900 px-3.5 py-2.5 text-center text-xs font-medium text-slate-50 shadow-sm"
-            >
-              Panduan PDF akan segera tersedia. Silakan ikuti Panduan Video
-              terlebih dahulu.
-            </p>
-          )}
 
           {/* Partner Logos Footer */}
           <footer className="mt-6 border-t border-slate-900/10 pt-4 text-center">
