@@ -8,8 +8,8 @@ import websisLogo from "../Assests/websis.png";
 const LINKS = [
   {
     id: "lecturer-register",
-    title: "Pendaftaran & Ujian Dosen",
-    description: "Portal resmi peserta dosen (dosen.kmk.id)",
+    title: "Pendaftaran & Ujian Dosen & Pegawai",
+    description: "Portal resmi peserta dosen dan pegawai (dosen.kmk.id)",
     href: "https://dosen.kmk.id",
     icon: Users,
     cardClasses:
@@ -21,7 +21,7 @@ const LINKS = [
   {
     id: "video-guide",
     title: "Panduan Video (YouTube)",
-    description: "Playlist tutorial langkah demi langkah untuk dosen",
+    description: "Playlist tutorial langkah demi langkah untuk dosen dan pegawai",
     href: "https://www.youtube.com/playlist?list=PLJIYpU05DMrc",
     icon: Play,
     cardClasses:
@@ -33,7 +33,7 @@ const LINKS = [
   {
     id: "pdf-guide",
     title: "Panduan PDF",
-    description: "Dokumen panduan tertulis resmi peserta dosen",
+    description: "Dokumen panduan tertulis resmi peserta dosen dan pegawai",
     href: "https://drive.google.com/file/d/1bszqWQz5KxYFEJ30Rp70KjQRhjqt1hcm/view?usp=drive_link",
     icon: FileText,
     cardClasses:
@@ -94,7 +94,7 @@ export default function App() {
 
       <main className="relative z-10 flex min-h-dvh items-center justify-center px-3.5 py-5 sm:px-6 sm:py-8">
         <section
-          aria-label="Portal Link Gemini Academy Dosen UIN Malang"
+          aria-label="Portal Link Gemini Academy Dosen dan Pegawai UIN Malang"
           className="w-full max-w-[460px] overflow-hidden rounded-3xl border border-white/80 bg-white/95 px-4 pb-6 shadow-[0_18px_45px_-16px_rgba(15,23,42,0.14),0_4px_12px_-2px_rgba(15,23,42,0.05)] backdrop-blur-md sm:px-5"
         >
           {/* Top brand gradient bar */}
@@ -128,7 +128,7 @@ export default function App() {
                   className="h-2 w-2 rounded-full bg-emerald-600 ring-3 ring-emerald-500/20"
                   aria-hidden="true"
                 />
-                Portal Khusus Dosen
+                Portal Khusus Dosen &amp; Pegawai
               </span>
             </div>
 
@@ -138,13 +138,13 @@ export default function App() {
             <p className="mt-1 text-[15px] font-semibold leading-snug text-slate-600">
               UIN Maulana Malik Ibrahim Malang
               <span className="mt-0.5 block text-[13.5px] font-medium text-slate-500">
-                Program Pelatihan &amp; Sertifikasi Dosen
+                Program Pelatihan &amp; Sertifikasi Dosen dan Pegawai
               </span>
             </p>
           </header>
 
           {/* Main Links */}
-          <nav className="flex flex-col gap-3" aria-label="Daftar Tautan Dosen">
+          <nav className="flex flex-col gap-3" aria-label="Daftar Tautan Dosen dan Pegawai">
             {LINKS.map((item) => (
               <LinkItem key={item.id} item={item} />
             ))}
