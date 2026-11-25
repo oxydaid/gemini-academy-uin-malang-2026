@@ -58,14 +58,14 @@ const LINK_GROUPS = [
   },
   {
     id: "dosen",
-    label: "Untuk Dosen",
+    label: "Untuk Dosen & Pegawai",
     badgeClasses: "bg-emerald-800/10 text-[#00572d]",
     dotClasses: "bg-emerald-700",
     items: [
       {
         id: "lecturer-register",
-        title: "Pendaftaran & Ujian Dosen",
-        description: "Portal resmi peserta dosen (dosen.kmk.id)",
+        title: "Pendaftaran & Ujian Dosen & Pegawai",
+        description: "Portal resmi peserta dosen dan pegawai (dosen.kmk.id)",
         href: "https://dosen.kmk.id",
         icon: Users,
         cardClasses:
@@ -76,8 +76,8 @@ const LINK_GROUPS = [
       },
       {
         id: "lecturer-video",
-        title: "Panduan Video Dosen",
-        description: "Playlist tutorial YouTube untuk dosen",
+        title: "Panduan Video Dosen & Pegawai",
+        description: "Playlist tutorial YouTube untuk dosen dan pegawai",
         href: "https://www.youtube.com/playlist?list=PLJIYpU05DMrc",
         icon: Play,
         cardClasses:
@@ -88,8 +88,8 @@ const LINK_GROUPS = [
       },
       {
         id: "lecturer-pdf",
-        title: "Panduan PDF Dosen",
-        description: "Dokumen panduan tertulis resmi dosen",
+        title: "Panduan PDF Dosen & Pegawai",
+        description: "Dokumen panduan tertulis resmi dosen dan pegawai",
         href: "https://drive.google.com/file/d/1bszqWQz5KxYFEJ30Rp70KjQRhjqt1hcm/view?usp=drive_link",
         icon: FileText,
         cardClasses:
@@ -196,7 +196,7 @@ export default function App() {
             <p className="mt-1 text-[15px] font-semibold leading-snug text-slate-600">
               UIN Maulana Malik Ibrahim Malang
               <span className="mt-0.5 block text-[13.5px] font-medium text-slate-500">
-                Portal Resmi Mahasiswa &amp; Dosen
+                Portal Resmi Mahasiswa, Dosen &amp; Pegawai
               </span>
             </p>
           </header>
